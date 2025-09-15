@@ -45,6 +45,42 @@ SCOUT/
 - Add CI workflow (lint, type-check, test)
 - Define infrastructure baseline (Terraform providers, remote state)
 
+## Local Development
+
+### Backend
+Create a virtual environment and install dependencies:
+
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install -r backend/requirements.txt
+uvicorn backend.app.main:app --reload --port 8000
+```
+
+Health endpoints:
+```
+GET http://localhost:8000/api/v3/health
+GET http://localhost:8000/api/v3/live
+GET http://localhost:8000/api/v3/ready
+```
+
+### Frontend
+
+From the `frontend` directory:
+```
+npm install
+npm run dev
+```
+Dev server default: http://localhost:5173
+
+### Code Quality
+```
+cd frontend && npm run lint && npm run typecheck
+```
+
+### Project Requirements Overview
+See `docs/requirements-overview.md` for phased roadmap and backlog.
+
 ## Contributing
 
 1. Create a feature branch
